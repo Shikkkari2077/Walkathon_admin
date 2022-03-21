@@ -7,6 +7,7 @@ import SponsersLIST from '../components/sponsers/SponsersLIST';
 import DashboardHome from '../components/dashboard/DashboardHome';
 import SponserEDIT_ADD from '../components/sponsers/SponserEDIT_ADD';
 import UserStepView from '../components/users/UserStepView';
+import TopUsers from '../components/users/TopUsers';
 
 const DataContainer = () => {
   return (
@@ -15,6 +16,7 @@ const DataContainer = () => {
             <Routes>
                 <Route exact path='/' element={<DashboardHome />}/>
 
+                <Route exact path='/users/top' element={<TopUsers />}/>
                 <Route exact path='/users/registered' element={<UserList />}/>
                 <Route exact path='/users/active' element={<ActiveUsers />}/>
                 <Route exact path='/users/:id' element={<UserStepView />}/>

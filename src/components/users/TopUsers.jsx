@@ -4,25 +4,23 @@ import { GetUserList } from '../../actions/HomeActions'
 import MUIDataTable from 'mui-datatables'
 import { Link } from 'react-router-dom'
 
-const AxtiveUsers = () => {
+const TopUsers = () => {
     const dispatch = useDispatch()
     const [responsive, setResponsive] = useState('vertical');
     const UserList = useSelector(state => state.Walkathon.UserList);
-
-
     const [USER, setUSER] = useState(false)
+    useEffect(() => {
+        dispatch(GetUserList())
+    }, [])
 
     const [Mobile, setMobile] = useState('')
     const [Email, setEmail] = useState('')
 
     useEffect(() => {
-        dispatch(GetUserList())
-    }, [])
-
-    useEffect(() => {
      if(UserList){
-      var newList = UserList.filter(data=>data.active!==0)
-      setUSER(newList)
+      var newList = UserList.sort((a,b)=> b.stepData.steps - a.stepData.steps)
+      var newList2 = newList.filter(data=>data.stepData.steps!==0).slice(0,50)
+      setUSER(newList2)
      }
   }, [UserList])
 
@@ -32,8 +30,9 @@ const AxtiveUsers = () => {
          var Filtered = USER.filter(data=>data.phone.includes(Mobile))
          setUSER(Filtered)
         }else{
-          var newList = UserList.filter(data=>data.active!==0)
-          setUSER(newList)
+          var newList = UserList.sort((a,b)=> b.stepData.steps - a.stepData.steps)
+          var newList2 = newList.filter(data=>data.stepData.steps!==0).slice(0,50)
+          setUSER(newList2)
         }
     }
  }, [Mobile])
@@ -44,11 +43,13 @@ const AxtiveUsers = () => {
         var Filtered = USER.filter(data=>data.email.toUpperCase().includes(Email.toUpperCase()))
         setUSER(Filtered)
        }else{
-        var newList = UserList.filter(data=>data.active!==0)
-         setUSER(newList)
+        var newList = UserList.sort((a,b)=> b.stepData.steps - a.stepData.steps)
+        var newList2 = newList.filter(data=>data.stepData.steps!==0).slice(0,50)
+        setUSER(newList2)
        }
     }
  }, [Email])
+    
     
     console.log('USER',USER);
 
@@ -181,7 +182,6 @@ const AxtiveUsers = () => {
     
   ];
 
-  
   const options = {
       filterType: "dropdown",
       search:false,
@@ -193,7 +193,6 @@ const AxtiveUsers = () => {
       selectableRows: "none",
       responsive,
   };
-
   return (
     <div>
       <div className="breadcrumb">
@@ -203,7 +202,7 @@ const AxtiveUsers = () => {
         </span>
       </div>
       <div className="Header">
-        <h2><span class="material-icons-outlined">data_saver_off</span> Active Users</h2>
+        <h2><span class="material-icons-outlined">data_saver_off</span> Top Users</h2>
       </div>
       <div className="FILTERS">
         <input onChange={(e)=>setMobile(e.target.value)} value={Mobile} type="text" placeholder='Searc By Mobile Number' />
@@ -219,4 +218,4 @@ const AxtiveUsers = () => {
   )
 }
 
-export default AxtiveUsers
+export default TopUsers

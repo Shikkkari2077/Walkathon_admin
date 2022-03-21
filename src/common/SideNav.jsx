@@ -43,6 +43,11 @@ const SideNav = () => {
             <span class="material-icons-outlined">{drop1?'arrow_drop_down':'arrow_left'}</span>
           </li>
             {drop1?<ul className="subnavLINKS">
+             <Link to="/users/top" className="subnavLink">
+                <li>
+                  <span class="material-icons-outlined">navigate_next</span>Top Users
+                </li>
+              </Link>
               <Link to="/users/registered" className="subnavLink">
                 <li>
                   <span class="material-icons-outlined">navigate_next</span>Registered

@@ -9,12 +9,44 @@ const UserList = () => {
     const [responsive, setResponsive] = useState('vertical');
     const UserList = useSelector(state => state.Walkathon.UserList);
 
+    const [Mobile, setMobile] = useState('')
+    const [Email, setEmail] = useState('')
+    const [USERS, setUSERS] = useState(false)
+    
     useEffect(() => {
         dispatch(GetUserList())
     }, [])
-    
-    console.log('UserList',UserList);
 
+    useEffect(() => {
+     if(UserList){
+      setUSERS(UserList)
+     }
+    }, [UserList])
+    
+    useEffect(() => {
+      if(UserList){
+          if(Mobile){
+           var Filtered = UserList.filter(data=>data.phone.includes(Mobile))
+           setUSERS(Filtered)
+          }else{
+            setUSERS(UserList)
+          }
+      }
+   }, [Mobile])
+
+   useEffect(() => {
+      if(UserList){
+        if(Email){
+          var Filtered = UserList.filter(data=>data.email.toUpperCase().includes(Email.toUpperCase()))
+          setUSERS(Filtered)
+         }else{
+           setUSERS(UserList)
+         }
+      }
+   }, [Email])
+   
+
+   console.log('USERS',USERS);
   const columns = [
     
     {
@@ -169,9 +201,13 @@ const UserList = () => {
       <div className="Header">
         <h2><span class="material-icons-outlined">data_saver_off</span> Registered Users</h2>
       </div>
+      <div className="FILTERS">
+        <input onChange={(e)=>setMobile(e.target.value)} value={Mobile} type="text" placeholder='Searc By Mobile Number' />
+        <input onChange={(e)=>setEmail(e.target.value)} value={Email} type="text" placeholder='Searc By Email Address' />
+      </div>
        <MUIDataTable
           className="table-responsive"
-          data={UserList?UserList:[]}
+          data={USERS?USERS:[]}
           columns={columns}
           options={options}
         />

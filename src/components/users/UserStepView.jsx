@@ -87,16 +87,31 @@ const UserStepView = () => {
     {UserDetails?<>
       <div className="USER_STEP_VIEW">
         <div>
+            <p>User Name</p>
+            <span>{USER_DATA1.first_name} {USER_DATA1.last_name}</span>
+        </div>
+        <div>
             <p>Active Time</p>
-            <span>{UserDetails.activeTime}</span>
+            <span>{UserDetails.activeTime} Minutes</span>
+        </div>
+        <div style={{border:'none'}}>
+            <p>Steps & Distance Summary</p>
+            {/* <span>{UserDetails.steps}</span> */}
+        </div>
+        <div className='stepAndDistance'>
+          {UserDetails?UserDetails.data.map(data=>(
+              <p>
+                <span>{data.steps} Steps</span> <span>{data.distance.toFixed(2)} Meters</span>
+              </p>
+          )):null}
         </div>
         <div>
-            <p>Distance</p>
-            <span>{UserDetails.distance} KM</span>
+            <p>Total Steps</p>
+            <span>{UserDetails.steps} Steps</span>
         </div>
         <div>
-            <p>Steps</p>
-            <span>{UserDetails.steps}</span>
+            <p>Total Distance</p>
+            <span>{UserDetails.distance.toFixed(2)} Meters</span>
         </div>
         <div>
             <p>Type</p>
