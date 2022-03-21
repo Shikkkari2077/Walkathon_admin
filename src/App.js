@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import { React, useState } from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import DashBoard from './common/DashBoard';
+import Login from './common/Login';
+import SideNav from './common/SideNav';
+
 
 function App() {
+  
+  const [user] = useState({
+    email:localStorage.getItem('email'),
+    token:localStorage.getItem('token'),
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      {user.email&&user.token?<DashBoard/>:<Login/>}
     </div>
   );
 }

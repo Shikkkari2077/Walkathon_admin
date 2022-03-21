@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+.logInPage {
+  background-image: url('/img/back-4.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background: linear-gradient(90deg,#2C3E50,#4CA1AF); */
+  height: 100vh;
+  /* border: 1px solid black; */
+  display: flex;
+ justify-content: center;
+ align-items: center;
+ font-family: 'Josefin Sans', sans-serif;
+}
+
+.log-right {
+  border-radius: 5px;
+  width: 27rem;
+  height: 26rem;
+  background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.384);
+}
+.log-right h1 {
+  margin: 20px;
+  background: linear-gradient(
+    90deg,
+    rgb(39, 176, 255) 0%,
+    rgb(0, 232, 236) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 2.5rem;
+  display: flex;
+  align-items:flex-end;
+  /* text-transform: uppercase; */
+}
+.log-right h1 span{
+  font-size: 2.8rem;
+}
+.log-form {
+  /* border: 2px solid white; */
+  width: 85%;
+}
+.inputl {
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  padding: 0.8rem 0.5rem;
+  font-size: 0.9rem;
+  margin: 0.7rem 0;
+}
+.formInputs{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0.7rem 0;
+  /* border: 1px solid red; */
+}
+.formInputs .l-label {
+  margin: 0.2rem 0;
+  color: white;
+  font-size: 15px;
+}
+.formInputs p {
+  color: red;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.SignUpBtn {
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    rgb(39, 176, 255) 0%,
+    rgb(0, 232, 236) 100%
+  );
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.SignUpBtn:hover {
+  background: linear-gradient(
+    90deg,
+    rgb(39, 143, 255) 0%,
+    rgb(12, 99, 250) 100%
+  );
+  transition: all 0.4s ease-out;
+}
