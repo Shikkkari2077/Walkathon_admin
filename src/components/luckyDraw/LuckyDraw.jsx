@@ -12,42 +12,68 @@ const LuckyDraw = () => {
   const [name, setName] = useState("circle");
   const [Random, setRandom] = useState(null);
   const [AttUSER, setAttUSER] = useState(false);
-
+  
   const [Winner, setWinner] = useState(false);
+  
+  const [WinnerLIST, setWinnerLIST] = useState([]);
 
   useEffect(() => {
     dispatch(GetUserList());
   }, []);
 
   useEffect(() => {
+    var Winners = JSON.parse(localStorage.getItem('WINNERS'))
+
     if (UserList) {
       var newList = UserList.filter((data) => data.attendance_no !== null);
-      setAttUSER(newList);
+      var secList = newList.filter(data=>!Winners.includes(data.id))
+      setAttUSER(secList);
     }
   }, [UserList]);
 
+
+
+  useEffect(() => {
+    
+    if(WinnerLIST.length>0){
+      localStorage.setItem('WINNERS',JSON.stringify(WinnerLIST))
+    }
+    
+    var Winners = JSON.parse(localStorage.getItem('WINNERS'))
+
+    if(WinnerLIST.length>0){
+      var newList = AttUSER.filter(data=>!Winners.includes(data.id))
+      setAttUSER(newList);
+    }
+
+    console.log("WINNERS", Winners);
+
+  }, [WinnerLIST])
+  
+
   const StartRotation = () => {
+    
     var attCount = AttUSER.length-1;
-    console.log("attCount", attCount);
 
     setName("circle start_rotate");
 
     var RandomValue = Math.floor(Math.random() * 4000) + 1;
     var RandomValueForWinner = Math.floor(Math.random() * attCount) + 1;
 
-    console.log("RandomValueForWinner", RandomValueForWinner);
-
     setRandom(RandomValue);
+
     setWinner(false);
     setTimeout(() => {
       setName("circle start_rotate stop_rotate");
-      console.log("Winner");
+    
       setWinner(AttUSER[RandomValueForWinner]);
+
+      setWinnerLIST([...WinnerLIST,AttUSER[RandomValueForWinner].id])
     }, RandomValue);
   };
 
-  console.log("Winner", Winner);
-
+  console.log("AttUSER", AttUSER);
+  
   return (
     <div>
       <div className="breadcrumb">

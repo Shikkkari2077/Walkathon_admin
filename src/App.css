@@ -383,7 +383,7 @@
     width: 100px;
     color: #363636;
     padding: 0.4rem 0.4rem;
-    margin-right: 0.5rem;
+    margin-right: 0rem;
 }
 .RESET_PASS .HEAD_AT button {
     cursor: pointer;
@@ -393,7 +393,7 @@
     letter-spacing: 1px;
     background-color: #fff;
     color: #363636;
-   
+    margin-left: 0.5rem;
     border-radius: 4px;
     transition: 300ms all ease;
     border: 1px solid #363636;

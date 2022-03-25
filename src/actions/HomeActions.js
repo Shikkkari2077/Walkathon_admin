@@ -217,3 +217,22 @@ export const AddAttendance = (data) => (dispatch)=>{
         console.log(err.message);
         });
     };
+
+export const ClearAttendance = (data) => (dispatch)=>{
+
+    axios
+        .post(Constant.getAPI() + `/system-operations/attendance/clear-attendance`,data, config)
+        .then((res) => {
+            if(res.data.success){
+                toast.success("Attendance Cleared Successfully", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+
+                window.location.reload()
+            }
+            
+        })
+        .catch((err) => {
+        console.log(err.message);
+        });
+    };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { GetUserDetails, GetUserList, ResetPassword, AddAttendance} from '../../actions/HomeActions'
+import { GetUserDetails, GetUserList, ResetPassword, AddAttendance, ClearAttendance} from '../../actions/HomeActions'
 import { Link, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -62,11 +62,11 @@ const UserStepView = () => {
     }
   }
 
-  useEffect(() => {
-   if(USER_DATA1){
-    axios.get(`https://walkathonapi.infoware.xyz/api/system-operations/managePassword/showPassword?user_id=${userId.id}`,config)
-   }
-  }, [USER_DATA1])
+  // useEffect(() => {
+  //  if(USER_DATA1){
+  //   axios.get(`https://walkathonapi.infoware.xyz/api/system-operations/managePassword/showPassword?user_id=${userId.id}`,config)
+  //  }
+  // }, [USER_DATA1])
   
   console.log('password',password);
 
@@ -78,6 +78,13 @@ const UserStepView = () => {
       attendance_no:attendance,
     }
     dispatch(AddAttendance(data))
+  }
+
+  const onAttendanceClear =()=>{
+    var data = {
+      user_id:userId.id,
+    }
+    dispatch(ClearAttendance(data))
   }
 
   return (
@@ -145,6 +152,7 @@ const UserStepView = () => {
             <div>
               <input onChange={(e)=>setAttendance(e.target.value)} value={attendance} type="text" maxLength='4' placeholder='Attendance ID'/>
               <button onClick={onAttendance}>Submit</button>
+              <button onClick={onAttendanceClear}>Clear</button>
             </div>
           </div>
           {reset?<div className='PASSWORD'>
