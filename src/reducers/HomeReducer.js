@@ -3,6 +3,8 @@ import {
     SET_SPONSER_LIST,
     SET_USER_DETAILS,
     SET_PARTICIPANTS_LIST,
+    SET_AGE_GROUPS,
+    SET_MEDICAL_CONDITIONS,
 } from '../actions/Types'
   
   const initialState = {
@@ -10,6 +12,8 @@ import {
     SponserList: false,
     UserDetails:false,
     Participants:false,
+    AgeGroups:false,
+    Medicals:false,
   };
   
   const homeReducer = (state = initialState, action) => {
@@ -33,6 +37,16 @@ import {
         return {
           ...state,
           Participants: action.payload,
+        };
+      case SET_AGE_GROUPS:
+        return {
+          ...state,
+          AgeGroups: action.payload,
+        };
+      case SET_MEDICAL_CONDITIONS:
+        return {
+          ...state,
+          Medicals: action.payload,
         };
       default:
               return state;

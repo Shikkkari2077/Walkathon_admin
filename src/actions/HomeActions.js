@@ -3,6 +3,8 @@ import {
     SET_SPONSER_LIST,
     SET_USER_DETAILS,
     SET_PARTICIPANTS_LIST,
+    SET_AGE_GROUPS,
+    SET_MEDICAL_CONDITIONS,
 } from './Types'
 
 import Constant from '../Constant'
@@ -98,39 +100,120 @@ export const GetUserDetails = (data) => (dispatch)=>{
         });
     };
 
-    export const GetParticipantsList = (data) => (dispatch)=>{
+export const GetParticipantsList = (data) => (dispatch)=>{
 
-        axios
-            .get(Constant.getAPI() + `/user/counter/getTotalParticipants`, config)
-            .then((res) => {
-                console.log(res.data.data);
-        
-                dispatch({
-                    type:SET_PARTICIPANTS_LIST,
-                    payload:res.data.data
-                })
-        
+    axios
+        .get(Constant.getAPI() + `/user/counter/getTotalParticipants`, config)
+        .then((res) => {
+            console.log(res.data.data);
+    
+            dispatch({
+                type:SET_PARTICIPANTS_LIST,
+                payload:res.data.data
             })
-            .catch((err) => {
-            console.log(err.message);
-            });
-        };
+    
+        })
+        .catch((err) => {
+        console.log(err.message);
+        });
+    };
 
-    export const ResetPassword = (data) => (dispatch)=>{
+export const ResetPassword = (data) => (dispatch)=>{
 
-        axios
-            .put(Constant.getAPI() + `/system-operations/updateDetails`,data, config)
-            .then((res) => {
-                if(res.data.success){
-                    toast.success("Password Reset Successfully", {
-                        position: toast.POSITION.TOP_RIGHT
-                    });
+    axios
+        .put(Constant.getAPI() + `/system-operations/updateDetails`,data, config)
+        .then((res) => {
+            if(res.data.success){
+                toast.success("Password Reset Successfully", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
 
-                    window.location.reload()
-                }
+                window.location.reload()
+            }
+            
+        })
+        .catch((err) => {
+        console.log(err.message);
+        });
+    };
+
+export const GetAgeGroups = (data) => (dispatch)=>{
+
+    axios
+        .get(Constant.getAPI() + `/register/registration-fields/listAgeGroups`, config)
+        .then((res) => {
+            console.log(res.data.data);
+
+            dispatch({
+                type:SET_AGE_GROUPS,
+                payload:res.data.data
+            })
+
+        })
+        .catch((err) => {
+        console.log(err.message);
+        });
+    };
+
+export const GetMedicalConditions = (data) => (dispatch)=>{
+
+    axios
+        .get(Constant.getAPI() + `/register/registration-fields/listConditions`, config)
+        .then((res) => {
+            console.log(res.data.data);
+
+            dispatch({
+                type:SET_MEDICAL_CONDITIONS,
+                payload:res.data.data
+            })
+
+        })
+        .catch((err) => {
+        console.log(err.message);
+        });
+    };
+
+export const UserRegister = (data) => (dispatch)=>{
+
+    axios
+        .post(Constant.getAPI() + `/register/user_register`,data, config)
+        .then((res) => {
+            if(res.data.success){
+                toast.success("User Registered Successfully", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+
                 
-            })
-            .catch((err) => {
-            console.log(err.message);
+            }else{
+                
+                toast.warning(`A user with this email address already exists.`, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+            
+        })
+        .catch((err) => {
+            toast.warning(`A user with this email address already exists.`, {
+                position: toast.POSITION.TOP_RIGHT
             });
-        };
+        });
+    };
+
+export const AddAttendance = (data) => (dispatch)=>{
+
+    axios
+        .post(Constant.getAPI() + `/system-operations/attendance/add-attendance`,data, config)
+        .then((res) => {
+            if(res.data.success){
+                toast.success("Attendance Added Successfully", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+
+                window.location.reload()
+            }
+            
+        })
+        .catch((err) => {
+        console.log(err.message);
+        });
+    };

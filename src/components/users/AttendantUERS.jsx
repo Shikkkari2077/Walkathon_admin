@@ -4,7 +4,7 @@ import { GetUserList } from '../../actions/HomeActions'
 import MUIDataTable from 'mui-datatables'
 import { Link } from 'react-router-dom'
 
-const AxtiveUsers = () => {
+const AttendantUERS = () => {
     const dispatch = useDispatch()
     const [responsive, setResponsive] = useState('vertical');
     const UserList = useSelector(state => state.Walkathon.UserList);
@@ -21,7 +21,7 @@ const AxtiveUsers = () => {
 
     useEffect(() => {
      if(UserList){
-      var newList = UserList.filter(data=>data.active!==0)
+      var newList = UserList.filter(data=>data.attendance_no!==null)
       setUSER(newList)
      }
   }, [UserList])
@@ -32,7 +32,7 @@ const AxtiveUsers = () => {
          var Filtered = USER.filter(data=>data.phone.includes(Mobile))
          setUSER(Filtered)
         }else{
-          var newList = UserList.filter(data=>data.active!==0)
+          var newList = UserList.filter(data=>data.attendance_no!==null)
           setUSER(newList)
         }
     }
@@ -44,7 +44,7 @@ const AxtiveUsers = () => {
         var Filtered = USER.filter(data=>data.email.toUpperCase().includes(Email.toUpperCase()))
         setUSER(Filtered)
        }else{
-        var newList = UserList.filter(data=>data.active!==0)
+        var newList = UserList.filter(data=>data.attendance_no!==null)
          setUSER(newList)
        }
     }
@@ -241,7 +241,7 @@ const AxtiveUsers = () => {
         </span>
       </div>
       <div className="Header">
-        <h2><span class="material-icons-outlined">data_saver_off</span> Active Users</h2>
+        <h2><span class="material-icons-outlined">data_saver_off</span> Attendant Users</h2>
         <Link to='/users/Add'>
                 ADD USER
         </Link>
@@ -260,4 +260,4 @@ const AxtiveUsers = () => {
   )
 }
 
-export default AxtiveUsers
+export default AttendantUERS

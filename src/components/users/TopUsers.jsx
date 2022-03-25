@@ -18,8 +18,8 @@ const TopUsers = () => {
 
     useEffect(() => {
      if(UserList){
-      var newList = UserList.sort((a,b)=> b.stepData.steps - a.stepData.steps)
-      var newList2 = newList.filter(data=>data.stepData.steps!==0).slice(0,50)
+      var newList = UserList.sort((a,b)=> b.stepData.distance - a.stepData.distance)
+      var newList2 = newList.filter(data=>data.stepData.distance!==0).slice(0,50)
       setUSER(newList2)
      }
   }, [UserList])
@@ -30,8 +30,8 @@ const TopUsers = () => {
          var Filtered = USER.filter(data=>data.phone.includes(Mobile))
          setUSER(Filtered)
         }else{
-          var newList = UserList.sort((a,b)=> b.stepData.steps - a.stepData.steps)
-          var newList2 = newList.filter(data=>data.stepData.steps!==0).slice(0,50)
+          var newList = UserList.sort((a,b)=> b.stepData.distance - a.stepData.distance)
+          var newList2 = newList.filter(data=>data.stepData.distance!==0).slice(0,50)
           setUSER(newList2)
         }
     }
@@ -43,8 +43,8 @@ const TopUsers = () => {
         var Filtered = USER.filter(data=>data.email.toUpperCase().includes(Email.toUpperCase()))
         setUSER(Filtered)
        }else{
-        var newList = UserList.sort((a,b)=> b.stepData.steps - a.stepData.steps)
-        var newList2 = newList.filter(data=>data.stepData.steps!==0).slice(0,50)
+        var newList = UserList.sort((a,b)=> b.stepData.distance - a.stepData.distance)
+        var newList2 = newList.filter(data=>data.stepData.distance!==0).slice(0,50)
         setUSER(newList2)
        }
     }
@@ -140,7 +140,7 @@ const TopUsers = () => {
     },
     {
       name: "stepData",
-      label: "Total Steps",
+      label: "Total Distance",
       options: {
         filter: true,
         sort: true,
@@ -148,15 +148,53 @@ const TopUsers = () => {
           return<span style={{
             letterSpacing:'0',
             fontWeight:'600'
-          }}>Total Steps</span>
+          }}>Total Distance</span>
         },
         customBodyRender: (stepData)=>{
           return <>
-            {stepData.steps?stepData.steps:0}
+            {stepData.distance?stepData.distance.toFixed(0):0} Meters
           </>
       }
     },
   },
+  {
+    name: "stepData",
+    label: "Total Steps",
+    options: {
+      filter: true,
+      sort: true,
+      customHeadLabelRender:()=>{
+        return<span style={{
+          letterSpacing:'0',
+          fontWeight:'600'
+        }}>Total Steps</span>
+      },
+      customBodyRender: (stepData)=>{
+        return <>
+          {stepData.steps?stepData.steps:0}
+        </>
+    }
+  },
+},
+{
+  name: "attendance_no",
+  label: "Attendance No",
+  options: {
+    filter: true,
+    sort: true,
+    customHeadLabelRender:()=>{
+      return<span style={{
+        letterSpacing:'0',
+        fontWeight:'600'
+      }}>Attendance No</span>
+    },
+    customBodyRender: (attendance_no)=>{
+      return <>
+        {attendance_no?attendance_no:' '}
+      </>
+  }
+},
+},
     {
       name: "id",
       label: "Action",
@@ -191,7 +229,7 @@ const TopUsers = () => {
       pagination:true,
       download: false,
       selectableRows: "none",
-      responsive,
+      responsive: 'scrollMaxHeight',
   };
   return (
     <div>
@@ -203,6 +241,9 @@ const TopUsers = () => {
       </div>
       <div className="Header">
         <h2><span class="material-icons-outlined">data_saver_off</span> Top Users</h2>
+        <Link to='/users/Add'>
+                ADD USER
+        </Link>
       </div>
       <div className="FILTERS">
         <input onChange={(e)=>setMobile(e.target.value)} value={Mobile} type="text" placeholder='Searc By Mobile Number' />

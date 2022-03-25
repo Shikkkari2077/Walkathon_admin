@@ -25,6 +25,9 @@ const SideNav = () => {
     if(location.pathname.includes('/sponsor')){
         setNavActive(4)
     }
+    if(location.pathname.includes('/lucky-draw')){
+        setNavActive(5)
+  }
   }, [navActive,location.pathname]);
 
   return (
@@ -55,7 +58,12 @@ const SideNav = () => {
               </Link>
               <Link to="/users/active" className="subnavLink">
                 <li>
-                  <span class="material-icons-outlined">navigate_next</span>Are Active
+                  <span class="material-icons-outlined">navigate_next</span>Active Users
+                </li>
+              </Link>
+              <Link to="/users/Attendant" className="subnavLink">
+                <li>
+                  <span class="material-icons-outlined">navigate_next</span>Attendant users
                 </li>
               </Link>
             </ul>:null}
@@ -92,6 +100,12 @@ const SideNav = () => {
                 </li>
               </Link>
             </ul>:null}
+        </Link>
+
+        <Link to="/lucky-draw" className="navLink"  onClick={()=>setNavActive(5)}>
+          <li className={navActive==5?"Link LinkActive":"Link"}>
+           <p><span class="material-icons-outlined">star_half</span>Lucky Draw</p>
+          </li>
         </Link>
 
       </ul>

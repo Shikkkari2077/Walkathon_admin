@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { GetUserDetails, GetUserList, ResetPassword} from '../../actions/HomeActions'
+import { GetUserDetails, GetUserList, ResetPassword, AddAttendance} from '../../actions/HomeActions'
 import { Link, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -70,20 +70,30 @@ const UserStepView = () => {
   
   console.log('password',password);
 
+  const [attendance, setAttendance] = useState('')
+
+  const onAttendance =()=>{
+    var data = {
+      user_id:userId.id,
+      attendance_no:attendance,
+    }
+    dispatch(AddAttendance(data))
+  }
+
   return (
     <div>
        <div className="breadcrumb">
-      <span>
-        <Link to='/users/registered'><span class="material-icons-outlined">group</span>User</Link>/
-        <Link to='/'><span class="material-icons-outlined">home</span>Home</Link>
-      </span>
-    </div>
-    <div className="Header">
-      <h2><span class="material-icons-outlined">price_change</span>User Steps View</h2>
-      <Link to='/users/registered'>
-        BACK
-      </Link>
-    </div>
+        <span>
+          <Link to='/users/registered'><span class="material-icons-outlined">group</span>User</Link>/
+          <Link to='/'><span class="material-icons-outlined">home</span>Home</Link>
+        </span>
+      </div>
+      <div className="Header">
+        <h2><span class="material-icons-outlined">data_saver_off</span>User Steps View</h2>
+        <Link to='/users/registered'>
+          BACK
+        </Link>
+      </div>
     {UserDetails?<>
       <div className="USER_STEP_VIEW">
         <div>
@@ -96,7 +106,6 @@ const UserStepView = () => {
         </div>
         <div style={{border:'none'}}>
             <p>Steps & Distance Summary</p>
-            {/* <span>{UserDetails.steps}</span> */}
         </div>
         <div className='stepAndDistance'>
           {UserDetails?UserDetails.data.map(data=>(
@@ -126,9 +135,19 @@ const UserStepView = () => {
             <span>{USER_DATA1.password}</span>
         </div>
     </div>
+   
+    </>:<div className="USER_STEP_VIEW">
+       <h3>Sorry! No Data Available</h3>
+    </div>}
     <div className='RESET_PASS'>
-          <button onClick={()=>setReset(!reset)}>Reset Password</button>
-          {reset?<div>
+          <div className='HEAD_AT'>
+            <button onClick={()=>setReset(!reset)}>Reset Password</button>
+            <div>
+              <input onChange={(e)=>setAttendance(e.target.value)} value={attendance} type="text" maxLength='4' placeholder='Attendance ID'/>
+              <button onClick={onAttendance}>Submit</button>
+            </div>
+          </div>
+          {reset?<div className='PASSWORD'>
             <input type="password" 
             placeholder='New Password' 
             name='password' 
@@ -143,10 +162,6 @@ const UserStepView = () => {
             <button onClick={RESET}>Submit</button>
           </div>:null}
     </div>
-    </>:<div className="USER_STEP_VIEW">
-       <h3>Sorry! No Data Available</h3>
-    </div>}
-
     
     </div>
   );

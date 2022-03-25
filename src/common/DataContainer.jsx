@@ -8,6 +8,9 @@ import DashboardHome from '../components/dashboard/DashboardHome';
 import SponserEDIT_ADD from '../components/sponsers/SponserEDIT_ADD';
 import UserStepView from '../components/users/UserStepView';
 import TopUsers from '../components/users/TopUsers';
+import UserAdd from '../components/users/UserAdd';
+import LuckyDraw from '../components/luckyDraw/LuckyDraw';
+import AttendantUERS from '../components/users/AttendantUERS';
 
 const DataContainer = () => {
   return (
@@ -19,10 +22,15 @@ const DataContainer = () => {
                 <Route exact path='/users/top' element={<TopUsers />}/>
                 <Route exact path='/users/registered' element={<UserList />}/>
                 <Route exact path='/users/active' element={<ActiveUsers />}/>
+                <Route exact path='/users/Attendant' element={<AttendantUERS />}/>
+
                 <Route exact path='/users/:id' element={<UserStepView />}/>
+                <Route exact path='/users/Add' element={<UserAdd />}/>
 
                 <Route exact path='/sponsor' element={<SponsersLIST />}/>
                 <Route exact path='/sponsor/:method/:SponsorId' element={<SponserEDIT_ADD />}/>
+
+                <Route exact path='/lucky-draw' element={<LuckyDraw />}/>
             </Routes>
        </div>
   )

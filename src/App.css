@@ -363,12 +363,29 @@
 }
 .RESET_PASS{
     width: 55%;
+    display: flex;
+    flex-direction: column;
     box-shadow: 0px 0px 5px #3636364d ;
     padding: 1rem;
     border-radius: 4px;
     margin-bottom: 1rem;
 }
-.RESET_PASS > button {
+.HEAD_AT{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.HEAD_AT > div input{
+    border: 1px solid #363636;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    outline: none;
+    width: 100px;
+    color: #363636;
+    padding: 0.4rem 0.4rem;
+    margin-right: 0.5rem;
+}
+.RESET_PASS .HEAD_AT button {
     cursor: pointer;
     padding: 0.4rem 0.8rem;
     text-transform: uppercase;
@@ -381,18 +398,18 @@
     transition: 300ms all ease;
     border: 1px solid #363636;
 }
-.RESET_PASS > button:hover{
+.RESET_PASS .HEAD_AT button:hover{
     background-color: #363636;
     color: #fff;
     border: 1px solid #363636;
 }
-.RESET_PASS > div{
+.RESET_PASS .PASSWORD{
     width: 100%;
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
 }
-.RESET_PASS > div input{
+.RESET_PASS .PASSWORD input{
     border: 1px solid #36363670;
     border-radius: 4px;
     font-size: 1rem;
@@ -401,7 +418,7 @@
     padding: 0.4rem 0.4rem;
     margin-bottom: 1rem;
 }
-.RESET_PASS > div button{
+.RESET_PASS .PASSWORD button{
     cursor: pointer;
     padding: 0.4rem 0.8rem;
     text-transform: uppercase;
@@ -414,7 +431,7 @@
     transition: 300ms all ease;
     border: 1px solid #363636;
 }
-.RESET_PASS > div button:hover{
+.RESET_PASS .PASSWORD button:hover{
     background-color: #36363696;
     color: #fff;
     border: 1px solid #363636;
@@ -450,4 +467,115 @@
 }
 .stepAndDistance p span{
     text-align: center;
+}
+
+.ADD_USER{
+    box-shadow: 0px 0px 5px #36363636;
+}
+.ADD_USER .primary {
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+}
+.ADD_USER .primary > div{
+    display: flex;
+    flex-direction: column;
+}
+.ADD_USER .primary > div label{
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+.ADD_USER .primary > div input{
+    border: 1px solid #3636368a;
+    padding: 0.4rem;
+    font-size: 0.8rem;
+    outline: none;
+    border-radius: 4px;
+}
+.ADD_USER .secondary{
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+}
+.ADD_USER .secondary > div {
+    display: flex;
+    flex-direction: column;
+}
+.ADD_USER .secondary > div label{
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+.ADD_USER .secondary > div select{
+    border: 1px solid #3636368a;
+    padding: 0.4rem;
+    font-size: 0.8rem;
+    outline: none;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+.Add_div{
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+}
+.Add_div button{
+    margin-left: 2rem;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid #363636;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    background: #fff;
+    cursor: pointer;
+    transition: 300ms all ease;
+}
+.Add_div button:hover{
+    color: #fff;
+    background: #363636;
+}
+.condition{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.condition select{
+    width: 95%;
+}
+.condition span{
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    transition: 400ms all ease;
+}
+.condition span:hover{
+    background: #3636366e;
+   
+}
+.third  {
+    display: flex;
+    justify-content: right;
+    padding: 1rem;
+}
+.third button{
+    padding: 0.3rem 0.8rem;
+    border: 2px solid #363636;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: #363636;
+    cursor: pointer;
+    transition: 300ms all ease;
+}
+.third button:hover{
+    color: #363636;
+    font-weight: 600;
+    background: #fff;
 }

@@ -135,7 +135,7 @@ const UserList = () => {
     },
     {
       name: "stepData",
-      label: "Total Steps",
+      label: "Total Distance",
       options: {
         filter: true,
         sort: true,
@@ -143,15 +143,53 @@ const UserList = () => {
           return<span style={{
             letterSpacing:'0',
             fontWeight:'600'
-          }}>Total Steps</span>
+          }}>Total Distance</span>
         },
         customBodyRender: (stepData)=>{
           return <>
-            {stepData.steps?stepData.steps:0}
+            {stepData.distance?stepData.distance.toFixed(0):0} Meters
           </>
       }
     },
   },
+  {
+    name: "stepData",
+    label: "Total Steps",
+    options: {
+      filter: true,
+      sort: true,
+      customHeadLabelRender:()=>{
+        return<span style={{
+          letterSpacing:'0',
+          fontWeight:'600'
+        }}>Total Steps</span>
+      },
+      customBodyRender: (stepData)=>{
+        return <>
+          {stepData.steps?stepData.steps:0}
+        </>
+    }
+  },
+},
+{
+  name: "attendance_no",
+  label: "Attendance No",
+  options: {
+    filter: true,
+    sort: true,
+    customHeadLabelRender:()=>{
+      return<span style={{
+        letterSpacing:'0',
+        fontWeight:'600'
+      }}>Attendance No</span>
+    },
+    customBodyRender: (attendance_no)=>{
+      return <>
+        {attendance_no?attendance_no:' '}
+      </>
+  }
+},
+},
     {
       name: "id",
       label: "Action",
@@ -187,7 +225,7 @@ const UserList = () => {
       pagination:true,
       download: false,
       selectableRows: "none",
-      responsive,
+      responsive: 'scrollMaxHeight',
   };
 
   return (
@@ -200,6 +238,9 @@ const UserList = () => {
       </div>
       <div className="Header">
         <h2><span class="material-icons-outlined">data_saver_off</span> Registered Users</h2>
+        <Link to='/users/Add'>
+                ADD USER
+        </Link>
       </div>
       <div className="FILTERS">
         <input onChange={(e)=>setMobile(e.target.value)} value={Mobile} type="text" placeholder='Searc By Mobile Number' />
