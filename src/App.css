@@ -9,7 +9,7 @@
 }
 .Main{
     display: grid;
-    grid-template-columns: 14rem auto;
+    grid-template-columns: 3fr 15fr;
     position: relative;
     height: 100%;
 }

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const UserList = () => {
     const dispatch = useDispatch()
-    const [responsive, setResponsive] = useState('vertical');
+
     const UserList = useSelector(state => state.Walkathon.UserList);
 
     const [Mobile, setMobile] = useState('')
@@ -225,11 +225,11 @@ const UserList = () => {
       pagination:true,
       download: false,
       selectableRows: "none",
-      responsive: 'scrollMaxHeight',
+      // responsive: 'scrollMaxHeight',
   };
 
   return (
-    <div>
+    <div className='IMP'>
       <div className="breadcrumb">
         <span>
           <Link to='/users/registered'><span class="material-icons-outlined">group</span>User</Link>/
