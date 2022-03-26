@@ -11,11 +11,13 @@ import TopUsers from '../components/users/TopUsers';
 import UserAdd from '../components/users/UserAdd';
 import LuckyDraw from '../components/luckyDraw/LuckyDraw';
 import AttendantUERS from '../components/users/AttendantUERS';
+import Loading from './Loading';
 
 const DataContainer = () => {
   return (
        <div className='DataContainer'>
            <ToastContainer/>
+           {/* <Loading/> */}
             <Routes>
                 <Route exact path='/' element={<DashboardHome />}/>
 

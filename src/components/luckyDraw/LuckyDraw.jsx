@@ -18,6 +18,10 @@ const LuckyDraw = () => {
   const [WinnerLIST, setWinnerLIST] = useState([]);
 
   useEffect(() => {
+    var Winners = localStorage.getItem('WINNERS')
+    if(!Winners){
+      localStorage.setItem('WINNERS',JSON.stringify(WinnerLIST))
+    }
     dispatch(GetUserList());
   }, []);
 
@@ -26,8 +30,8 @@ const LuckyDraw = () => {
 
     if (UserList) {
       var newList = UserList.filter((data) => data.attendance_no !== null);
-      var secList = newList.filter(data=>!Winners.includes(data.id))
-      setAttUSER(secList);
+      // var secList = newList.filter(data=>!Winners.includes(data.id))
+      setAttUSER(newList);
     }
   }, [UserList]);
 
@@ -73,6 +77,7 @@ const LuckyDraw = () => {
   };
 
   console.log("AttUSER", AttUSER);
+  console.log("UserList", UserList);
   
   return (
     <div>
