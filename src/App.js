@@ -15,7 +15,8 @@ function App() {
 
   return (
     <div className='App'>
-      {user.email&&user.token?<DashBoard/>:<Login/>}
+      {/* {user.email&&user.token?<DashBoard/>:<Login/>} */}
+      <DashBoard/>
     </div>
   );
 }

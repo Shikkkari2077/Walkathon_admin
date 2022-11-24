@@ -56,7 +56,7 @@ const LuckyDraw = () => {
   
 
   const StartRotation = () => {
-    
+  
     var attCount = AttUSER.length-1;
 
     setName("circle start_rotate");

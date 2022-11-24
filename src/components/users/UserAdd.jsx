@@ -32,6 +32,7 @@ const UserAdd = () => {
         setUserNew({...userNew,[name]:value})
     }
 
+   
     const [Medical, setMedical] = useState([{value:''}])
 
     const [medicalConditions, setMedicalConditions] = useState([])
